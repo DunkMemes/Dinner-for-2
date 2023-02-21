@@ -27,6 +27,7 @@ import static de.dhbw.dinnerfortwo.api.OwnerController.URI_OWNER_BASE;
  * REST (HTTP) API of the Dinner app to interact with the UI or external applications.
  * The REST API provides the CRUD operations to create, read, update or delete a restaurant.
  */
+//Das ist ein Testkommentar
 @RestController
 @RequestMapping(value = URI_OWNER_BASE, produces = "application/json;charset=UTF-8")
 public class OwnerController {
