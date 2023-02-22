@@ -1,4 +1,4 @@
-package de.dhbw.dinnerfortwo.impl;
+package de.dhbw.dinnerfortwo.impl.owner;
 
 
 import javax.persistence.Column;

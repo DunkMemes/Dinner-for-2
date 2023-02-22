@@ -1,9 +1,6 @@
 package de.dhbw.dinnerfortwo
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import de.dhbw.dinnerfortwo.api.RestaurantController.Companion.URI_RESTAURANT_BASE
-import de.dhbw.dinnerfortwo.impl.Restaurant
-import de.dhbw.dinnerfortwo.impl.RestaurantRepository
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -19,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class RestaurantControllerTest(
+class RestaurantServiceTest(
     @Autowired val repository: RestaurantRepository,
     @Autowired val mockMvc: MockMvc,
     @Autowired val objectMapper: ObjectMapper

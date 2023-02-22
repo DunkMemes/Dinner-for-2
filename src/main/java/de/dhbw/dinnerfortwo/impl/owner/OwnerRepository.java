@@ -1,4 +1,4 @@
-package de.dhbw.dinnerfortwo.impl;
+package de.dhbw.dinnerfortwo.impl.owner;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

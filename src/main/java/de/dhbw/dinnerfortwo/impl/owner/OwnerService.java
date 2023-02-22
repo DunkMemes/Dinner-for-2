@@ -1,5 +1,7 @@
-package de.dhbw.dinnerfortwo.impl;
+package de.dhbw.dinnerfortwo.impl.owner;
 
+import de.dhbw.dinnerfortwo.impl.owner.Owner;
+import de.dhbw.dinnerfortwo.impl.owner.OwnerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
