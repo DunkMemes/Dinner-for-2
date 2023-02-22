@@ -1,0 +1,49 @@
+2023-02-21 11:55:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "SELECT * FROM INFORMATION_SCHEMA.SESSION_STATE INFORMATION_SCHEMA[*].CHECK_CONSTRAINTS"
+Syntax error in SQL statement "SELECT * FROM INFORMATION_SCHEMA.SESSION_STATE INFORMATION_SCHEMA[*].CHECK_CONSTRAINTS"; SQL statement:
+SELECT * FROM INFORMATION_SCHEMA.SESSION_STATE INFORMATION_SCHEMA.CHECK_CONSTRAINTS [42000-214]
+2023-02-21 14:42:28 jdbc[4]: null
+org.h2.message.DbException: Die Datenbank-Verbindung wurde nicht explizit geschlossen (jetzt in der Müllabfuhr)
+The connection was not closed by the application and is garbage collected [90018-214]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:190)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:132)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:808)
+	at org.h2.server.web.WebApp.test(WebApp.java:972)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.WebThread.process(WebThread.java:152)
+	at org.h2.server.web.WebThread.run(WebThread.java:101)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Die Datenbank-Verbindung wurde nicht explizit geschlossen (jetzt in der Müllabfuhr)
+The connection was not closed by the application and is garbage collected [90018-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 13 more
+2023-02-21 14:42:29 database: wrong user or password; user: "SA"
+org.h2.message.DbException: Falscher Benutzername oder Passwort
+Wrong user name or password [28000-214]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.openSession(Engine.java:154)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:808)
+	at org.h2.server.web.WebApp.login(WebApp.java:1033)
+	at org.h2.server.web.WebApp.process(WebApp.java:226)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.WebThread.process(WebThread.java:152)
+	at org.h2.server.web.WebThread.run(WebThread.java:101)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Falscher Benutzername oder Passwort
+Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 16 more
