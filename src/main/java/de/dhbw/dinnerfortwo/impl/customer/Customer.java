@@ -1,4 +1,4 @@
-package de.dhbw.dinnerfortwo.impl.customer;
+package de.dhbw.dinnerfortwo.impl.Customer;
 
 import javax.persistence.*;
 import java.util.UUID;
