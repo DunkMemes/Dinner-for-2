@@ -12,6 +12,8 @@ public class Restaurant {
     @Id
     private String restaurantID;
     @Column(nullable = false)
+    private String ownerID;
+    @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private String cuisine;
@@ -23,8 +25,9 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(String restaurantID, String name, String cuisine, String email, Double rating) {
+    public Restaurant(String restaurantID, String ownerID, String name, String cuisine, String email, Double rating) {
         this.restaurantID = restaurantID;
+        this.ownerID = ownerID;
         this.name = name;
         this.cuisine = cuisine;
         this.email = email;
@@ -45,6 +48,14 @@ public class Restaurant {
 
     public void setRestaurantID(String restaurantID) {
         this.restaurantID = restaurantID;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
     }
 
     public String getName() {
@@ -83,6 +94,7 @@ public class Restaurant {
     public String toString() {
         return "Restaurant{" +
                 "restaurantID=" + restaurantID +
+                ", ownerID='" + ownerID + '\'' +
                 ", name='" + name + '\'' +
                 ", cuisine='" + cuisine + '\'' +
                 ", email='" + email + '\'' +
