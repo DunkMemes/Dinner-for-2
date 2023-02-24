@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -16,18 +17,18 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public Customer getCustomerById(String Id){
+    public Customer getCustomerById(UUID Id){
         log.info("Looking for Customer with ID: "+Id);
-        return customerRepository.findById(Id).orElseThrow(()-> new EntityNotFoundException("Customer with ID: "+Id+" not found"));
+        return customerRepository.findById(Id.toString()).orElseThrow(()-> new EntityNotFoundException("Customer with ID: "+Id+" not found"));
     }
     public List<Customer> getAllCustomers(){
         log.info("Searching for all Customers");
         return customerRepository.findAll().stream().toList();
     }
 
-    public Customer createCustomer(Customer newCustomer){
+    public Customer createCustomer(Customer customer){
         log.info("Creating new Customer");
-        return customerRepository.save(newCustomer);
+        return customerRepository.save(customer);
     }
 
     public Customer updateCustomer( Customer updateCustomer){
