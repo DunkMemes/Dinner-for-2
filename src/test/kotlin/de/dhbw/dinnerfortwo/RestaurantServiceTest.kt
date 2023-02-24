@@ -1,6 +1,7 @@
 package de.dhbw.dinnerfortwo
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import de.dhbw.dinnerfortwo.impl.restaurant.RestaurantRepository
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -13,6 +14,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import de.dhbw.dinnerfortwo.api.RestaurantController.URI_RESTAURANT_BASE
+import de.dhbw.dinnerfortwo.impl.restaurant.Restaurant
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -56,7 +60,7 @@ class RestaurantServiceTest(
         val entity = repository.save(storedRestaurant)
 
         // execute function under test
-        val request = get("${URI_RESTAURANT_BASE}/${entity.id}")
+        val request = get("${URI_RESTAURANT_BASE}/${entity.restaurantID}")
             .contentType("application/json")
         val result = mockMvc.perform(request)
             .andExpect(status().isOk)
@@ -74,8 +78,14 @@ class RestaurantServiceTest(
         val storedRestaurant = newRestaurant()
         val entity = repository.save(storedRestaurant)
 
-        val update = storedRestaurant.copy(rating = 4.5) // copy of the object but with modified rating
-        val request = put("${URI_RESTAURANT_BASE}/${entity.id}")
+        val update = Restaurant(
+            storedRestaurant.restaurantID,
+            storedRestaurant.name,
+            storedRestaurant.cuisine,
+            storedRestaurant.email,
+            4.5
+        ) // copy of the object but with modified rating
+        val request = put("${URI_RESTAURANT_BASE}/${entity.restaurantID}")
             .contentType("application/json")
             .content(objectMapper.writeValueAsString(update))
         mockMvc
@@ -85,7 +95,7 @@ class RestaurantServiceTest(
             .andReturn()
 
         // validate result
-        val updatedRestaurant = repository.findById(entity.id).get()
+        val updatedRestaurant = repository.findById(entity.restaurantID).get()
         updatedRestaurant.name `should be equal to` "Bella Italia"
         updatedRestaurant.rating `should be equal to` 4.5
     }
@@ -95,7 +105,7 @@ class RestaurantServiceTest(
         // prepare database
         val entity = newRestaurant()
 
-        val request = put("${URI_RESTAURANT_BASE}/${entity.id}")
+        val request = put("${URI_RESTAURANT_BASE}/${entity.restaurantID}")
             .contentType("application/json")
             .content(objectMapper.writeValueAsString(entity))
         mockMvc
@@ -112,17 +122,17 @@ class RestaurantServiceTest(
         val entity = repository.save(storedRestaurant)
 
         //execute function under test
-        val request = delete("${URI_RESTAURANT_BASE}/${entity.id}")
+        val request = delete("${URI_RESTAURANT_BASE}/${entity.restaurantID}")
         mockMvc
             .perform(request)
             .andExpect(status().isOk) // validate response
 
         // validate entity has been deleted
-        val result = repository.findById(entity.id)
+        val result = repository.findById(entity.restaurantID)
         result.isEmpty `should be equal to` true
     }
 
     private fun newRestaurant(): Restaurant {
-        return Restaurant(name = "Bella Italia", cuisine = "Italy", email = "info@bella.com", rating = 3.0)
+        return Restaurant("Bella Italia", "Italy", "info@bella.com", 3.0)
     }
 }

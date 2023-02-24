@@ -38,7 +38,7 @@ public class RestaurantService {
         persisted.setEmail(updateRestaurant.getEmail());
         persisted.setCuisine(updateRestaurant.getCuisine());
         persisted.setRating(updateRestaurant.getRating());
-        restaurantRepository.save(updateRestaurant);
+        restaurantRepository.save(persisted);
     }
 
     public void deleteRestaurantById(String Id) {

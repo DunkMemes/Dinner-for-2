@@ -18,7 +18,7 @@ import static de.dhbw.dinnerfortwo.api.RestaurantController.URI_RESTAURANT_BASE;
 @RestController
 @RequestMapping(value = URI_RESTAURANT_BASE, produces = "application/json;charset=UTF-8")
 public class RestaurantController {
-    static final String URI_RESTAURANT_BASE = URI_BASE + "/restaurants";
+    public static final String URI_RESTAURANT_BASE = URI_BASE + "/restaurants";
 
     private final RestaurantService restaurantService;
 

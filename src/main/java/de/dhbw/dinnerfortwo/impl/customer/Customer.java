@@ -1,12 +1,13 @@
-package de.dhbw.dinnerfortwo.impl;
+package de.dhbw.dinnerfortwo.impl.customer;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Customer")
-public class Customer {
+public class Customer extends Object {
     @Id
-    @GeneratedValue
+    //@GeneratedValue
     private String customerID;
 
     @Column(nullable = false)
@@ -26,6 +27,14 @@ public class Customer {
 
     public Customer(String id, String name, String address, String email, String password) {
         this.customerID = id;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Customer(String name, String address, String email, String password) {
+        this.customerID = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         this.email = email;

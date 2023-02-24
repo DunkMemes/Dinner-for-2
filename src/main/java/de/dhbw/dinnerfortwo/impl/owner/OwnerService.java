@@ -47,7 +47,7 @@ public class OwnerService {
         persisted.setName(owner.getName());
         persisted.setAddress(owner.getAddress());
         persisted.setEmail(owner.getEmail());
-        ownerRepository.save(owner);
+        ownerRepository.save(persisted);
     }
 
     public void delete(UUID id) {
