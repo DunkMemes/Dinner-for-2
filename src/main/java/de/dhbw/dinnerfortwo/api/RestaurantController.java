@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.Column;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.UUID;
 
 import static de.dhbw.dinnerfortwo.api.MetaInfo.URI_BASE;
 import static de.dhbw.dinnerfortwo.api.RestaurantController.URI_RESTAURANT_BASE;
@@ -54,8 +55,8 @@ public class RestaurantController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> updateRestaurant(@PathVariable String id, @RequestBody RestaurantDTO updateRestaurant){
-        Restaurant restaurant = new Restaurant(id.toString(), updateRestaurant.getName(), updateRestaurant.getCuisine(), updateRestaurant.getEmail(), updateRestaurant.getRating());
+    public ResponseEntity<HttpStatus> updateRestaurant(@PathVariable UUID id, @RequestBody RestaurantDTO updateRestaurant){
+        Restaurant restaurant = new Restaurant(id.toString(),updateRestaurant.getOwnerID(), updateRestaurant.getName(), updateRestaurant.getCuisine(), updateRestaurant.getEmail(), updateRestaurant.getRating());
         try {
             restaurantService.updateRestaurant(restaurant);
             log.info("Updating restaurant with ID: " + id.toString());
@@ -83,12 +84,15 @@ public class RestaurantController {
         private Double rating;
         @Column
         private String email;
+        @Column
+        private String ownerID;
 
-        public RestaurantDTO(String name, String cuisine, Double rating, String email) {
+        public RestaurantDTO(String name, String ownerID, String cuisine, Double rating, String email) {
             this.name = name;
             this.cuisine = cuisine;
             this.rating = rating;
             this.email = email;
+            this.ownerID = ownerID;
         }
 
         public String getName() {
@@ -97,6 +101,14 @@ public class RestaurantController {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getOwnerID() {
+            return ownerID;
+        }
+
+        public void setOwnerID(String ownerID) {
+                this.ownerID = ownerID;
         }
 
         public String getCuisine() {
