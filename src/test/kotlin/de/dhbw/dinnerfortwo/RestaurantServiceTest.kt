@@ -80,6 +80,7 @@ class RestaurantServiceTest(
 
         val update = Restaurant(
             storedRestaurant.restaurantID,
+            storedRestaurant.ownerID,
             storedRestaurant.name,
             storedRestaurant.cuisine,
             storedRestaurant.email,

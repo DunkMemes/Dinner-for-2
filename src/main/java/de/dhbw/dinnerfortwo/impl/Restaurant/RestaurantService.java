@@ -3,7 +3,6 @@ package de.dhbw.dinnerfortwo.impl.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -43,6 +42,6 @@ public class RestaurantService {
 
     public void deleteRestaurantById(String Id) {
         log.info("Delete Restaurant with ID: " + Id);
-        restaurantRepository.deleteById(Id);
+        restaurantRepository.deleteById(Id.toString());
     }
 }

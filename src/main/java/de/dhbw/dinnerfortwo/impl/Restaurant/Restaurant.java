@@ -5,9 +5,11 @@ package de.dhbw.dinnerfortwo.impl.Restaurant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @Entity
+@Table(name = "Restaurant")
 public class Restaurant {
     @Id
     private String restaurantID;
@@ -20,12 +22,12 @@ public class Restaurant {
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private Double rating;
+    private double rating;
 
     public Restaurant() {
     }
 
-    public Restaurant(String restaurantID, String ownerID, String name, String cuisine, String email, Double rating) {
+    public Restaurant(String restaurantID, String ownerID, String name, String cuisine, String email, double rating) {
         this.restaurantID = restaurantID;
         this.ownerID = ownerID;
         this.name = name;
@@ -34,7 +36,7 @@ public class Restaurant {
         this.rating = rating;
     }
 
-    public Restaurant(String name, String cuisine, String email, Double rating) {
+    public Restaurant(String name, String cuisine, String email, double rating) {
         this.restaurantID = UUID.randomUUID().toString();
         this.name = name;
         this.cuisine = cuisine;
@@ -86,7 +88,7 @@ public class Restaurant {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 

@@ -6,6 +6,7 @@ spring:
     name: dinnerfortwo
   datasource:
     url: jdbc:h2:file:~/dinner-prod-db;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    //url: jdbc:h2:mem:~/Desktop/Uni/Fächer/FallstudieDinnerForTwo/dinner-for-two/src/main/resources/dinner-prod-db;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
     driverClassName: org.h2.Driver
     username: sa
     password:

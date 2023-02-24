@@ -96,7 +96,7 @@ public class Customer extends Object {
 
     @Override
     public String toString() {
-        return "Owner{" +
+        return "Customer{" +
                 "id=" + customerID +
                 ", name='" + name + '\'' +
                 ", adress='" + address + '\'' +
