@@ -3,46 +3,53 @@ package de.dhbw.dinnerfortwo.impl.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * The CustomerService contains the operations related to managing Customers.
+ */
 @Service
 public class CustomerService {
-    private  final CustomerRepository customerRepository;
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    public Customer getCustomerById(UUID Id){
-        log.info("Looking for Customer with ID: "+Id);
-        return customerRepository.findById(Id.toString()).orElseThrow(()-> new EntityNotFoundException("Customer with ID: "+Id+" not found"));
+    private final CustomerRepository customerRepository;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    @Transactional
+    public Customer getCustomerById(UUID id) {
+        log.info("Looking for an customer with id {}", id);
+        return customerRepository.findById(id.toString()).orElseThrow(() -> new EntityNotFoundException("Could not find Customer with Id " + id));
     }
-    public List<Customer> getAllCustomers(){
-        log.info("Searching for all Customers");
+
+    @Transactional
+    public List<Customer> getAllCustomers() {
+        log.info("Get all customers");
         return customerRepository.findAll().stream().toList();
     }
 
-    public Customer createCustomer(Customer customer){
-        log.info("Creating new Customer");
+    @Transactional
+    public Customer createCustomer(Customer customer) {
+        log.info("Save or update customer {}", customer);
         return customerRepository.save(customer);
     }
 
-    public Customer updateCustomer( Customer updateCustomer){
-        log.info("Updating Customer with ID: "+ updateCustomer.getId());
-        var persitent = customerRepository.findById(updateCustomer.getId()).orElseThrow(()-> new EntityNotFoundException("Customer not found"));
-        persitent.setAddress(updateCustomer.getAddress());
-        persitent.setEmail(updateCustomer.getEmail());
-        persitent.setName(updateCustomer.getName());
-        persitent.setPassword(updateCustomer.getPassword());
-        return  customerRepository.save(persitent);
+    @Transactional
+    public void updateCustomer(Customer customer) {
+        var persisted = customerRepository.findById(customer.getId()).orElseThrow(() -> new EntityNotFoundException("Could not find owner with Id " + customer.getId()));
+        persisted.setName(customer.getName());
+        persisted.setAddress(customer.getAddress());
+        persisted.setEmail(customer.getEmail());
+        customerRepository.save(customer);
     }
 
-    public void deleteCustomerBiId(String Id){
-        log.info("Deleting Customer with ID: "+ Id);
-        customerRepository.deleteById(Id);
+    public void deleteCustomerById(UUID id) {
+        log.info("Deleting customer with id {}", id);
+        customerRepository.deleteById(id.toString());
     }
 }

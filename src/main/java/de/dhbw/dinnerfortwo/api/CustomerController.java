@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Column;
 import java.util.List;
+import java.util.UUID;
 
 import static de.dhbw.dinnerfortwo.api.CustomerController.URI_CUSTOMER_BASE;
 import static de.dhbw.dinnerfortwo.api.MetaInfo.URI_BASE;
@@ -28,7 +29,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable String id) throws Throwable {
+    public ResponseEntity<Customer> getCustomerById(@PathVariable UUID id) throws Throwable {
         log.info("Get Method called to get Customer via ID");
         Customer result = customerService.getCustomerById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -51,15 +52,14 @@ public class CustomerController {
     @PutMapping("{id}")
     public ResponseEntity<Customer> updateCustomer(@RequestBody CustomerDTO updateCustomer, @PathVariable String id){
         Customer customer = new Customer(id.toString(),updateCustomer.getName(),updateCustomer.getAddress(), updateCustomer.getEmail(),updateCustomer.getPassword());
-        Customer result = customerService.updateCustomer(customer);
         log.info("Updated customer{}",customer);
-        return new ResponseEntity<>(result,HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String id){
+    public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable UUID id){
         log.info("Delete Method called for customer with ID: {}",id);
-        customerService.deleteCustomerBiId(id);
+        customerService.deleteCustomerById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
