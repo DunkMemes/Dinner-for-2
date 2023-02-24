@@ -1,16 +1,14 @@
-package de.dhbw.dinnerfortwo.impl;
+package de.dhbw.dinnerfortwo.impl.Customer;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Owner {
+@Table(name = "Customer")
+public class Customer {
     @Id
-    //@GeneratedValue
-    private String id;
+    @GeneratedValue
+    private String customerID;
 
     @Column(nullable = false)
     private String name;
@@ -21,22 +19,26 @@ public class Owner {
     @Column(nullable = false)
     private String email;
 
-    public Owner(String name, String address, String email) {
-        this(UUID.randomUUID().toString(), name, address, email);
+    @Column(nullable = false)
+    private String password;
+
+    public Customer(String name, String address, String email, String password) {
+        this(UUID.randomUUID().toString(), name, address, email, password);
     }
 
-    public Owner() {
+    public Customer() {
     }
 
-    public Owner(String id, String name, String address, String email) {
-        this.id = id;
+    public Customer(String id, String name, String address, String email, String password) {
+        this.customerID = id;
         this.name = name;
         this.address = address;
         this.email = email;
+        this.password = password;
     }
 
     public String getId() {
-        return id;
+        return customerID;
     }
 
     public String getName() {
@@ -52,7 +54,7 @@ public class Owner {
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.customerID = id;
     }
 
     public void setName(String name) {
@@ -67,29 +69,33 @@ public class Owner {
         this.email = email;
     }
 
+    public void setPassword(String password) { this.password = password; }
+
+    public String getPassword() { return password; }
+
     // equals and hash code must be based on the ID for JPA to work well.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Owner owner = (Owner) o;
+        Customer customer = (Customer) o;
 
-        return id.equals(owner.id);
+        return customerID.equals(customer.customerID);
     }
 
     // equals and hash code must be based on the ID for JPA to work well.
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return customerID.hashCode();
     }
 
     @Override
     public String toString() {
         return "Owner{" +
-                "id=" + id +
+                "id=" + customerID +
                 ", name='" + name + '\'' +
-                ", adress='" + address + '\'' +
+                ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

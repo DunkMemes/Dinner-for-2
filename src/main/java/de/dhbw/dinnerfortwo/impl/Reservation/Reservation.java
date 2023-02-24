@@ -1,9 +1,10 @@
-package de.dhbw.dinnerfortwo.impl;
+package de.dhbw.dinnerfortwo.impl.Reservation;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 public class Reservation {
@@ -15,15 +16,28 @@ public class Reservation {
     private int count_seats;
 
     @Column(nullable = false)
-    private int customerID;
+    private String customerID;
 
     @Column(nullable = false)
-    private int restaurantID;
+    private String restaurantID;
 
     @Column(nullable = false)
     private Date date = new Date();
 
+    public Reservation(int count_seats, String customerID, String restaurantID, Date date) {
+        this(UUID.randomUUID().toString(), count_seats, customerID, restaurantID, date);
+    }
+
+
     public Reservation() {
+    }
+
+    public Reservation(String id, int count_seats, String customerID, String restaurantID, Date date) {
+        this.reservationID = id;
+        this.count_seats = count_seats;
+        this.customerID = customerID;
+        this.restaurantID = restaurantID;
+        this.date = date;
     }
 
     public Reservation(String id) {
@@ -34,8 +48,41 @@ public class Reservation {
         return reservationID;
     }
 
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public int getCountSeats() {
+        return count_seats;
+    }
+
+    public String getRestaurantID() {
+        return restaurantID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
     public void setId(String id) {
         this.reservationID = id;
+    }
+
+    public void setCountSeats(int count_seats) {
+        this.count_seats = count_seats;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setRestaurantID(String restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     // equals and hash code must be based on the ID for JPA to work well.
@@ -62,6 +109,7 @@ public class Reservation {
                 "date=" + date +
                 "customerID=" + customerID +
                 "restaurantID=" + restaurantID +
+                "date=" + date +
                 '}';
     }
 }

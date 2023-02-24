@@ -1,7 +1,7 @@
 package de.dhbw.dinnerfortwo.api;
 
-import de.dhbw.dinnerfortwo.impl.Owner.Owner;
-import de.dhbw.dinnerfortwo.impl.Owner.OwnerService;
+import de.dhbw.dinnerfortwo.impl.Customer.CustomerService;
+import de.dhbw.dinnerfortwo.impl.Customer.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,49 +21,49 @@ import java.util.List;
 import java.util.UUID;
 
 import static de.dhbw.dinnerfortwo.api.MetaInfo.URI_BASE;
-import static de.dhbw.dinnerfortwo.api.OwnerController.URI_OWNER_BASE;
+import static de.dhbw.dinnerfortwo.api.CustomerController.URI_CUSTOMER_BASE;
 
 /**
  * REST (HTTP) API of the Dinner app to interact with the UI or external applications.
  * The REST API provides the CRUD operations to create, read, update or delete a restaurant.
  */
 @RestController
-@RequestMapping(value = URI_OWNER_BASE, produces = "application/json;charset=UTF-8")
-public class OwnerController {
+@RequestMapping(value = URI_CUSTOMER_BASE, produces = "application/json;charset=UTF-8")
+public class CustomerController {
 
-    public static final String URI_OWNER_BASE = URI_BASE + "/owners";
+    public static final String URI_CUSTOMER_BASE = URI_BASE + "/customers";
 
-    private final OwnerService ownerService;
+    private final CustomerService customerService;
 
-    public OwnerController(OwnerService ownerService) {
-        this.ownerService = ownerService;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/{id}")
-    public ResponseEntity<Owner> getOwner(@PathVariable UUID id) {
-        log.info("Get owner with id {}", id);
+    public ResponseEntity<Customer> getCustomer(@PathVariable UUID id) {
+        log.info("Get customer with id {}", id);
         try {
-            var owner = ownerService.getOwner(id);
-            return ResponseEntity.ok(owner);
+            var customer = customerService.getCustomer(id);
+            return ResponseEntity.ok(customer);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping
-    public ResponseEntity<List<Owner>> getAllOwners() {
-        log.info("Get all owners");
-        var result = ownerService.getAllOwners();
+    public ResponseEntity<List<Customer>> getAllCustomers() {
+        log.info("Get all customers");
+        var result = customerService.getAllCustomers();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Owner> createOwner(@RequestBody OwnerDTO newOwner) {
-        Owner owner = new Owner(newOwner.getName(), newOwner.getAddress(), newOwner.getEmail()); // enforce a new ID
-        Owner result = ownerService.create(owner);
-        log.info("Created owner {}", result);
+    public ResponseEntity<Customer> createCustomer(@RequestBody CustomerDTO newCustomer) {
+        Customer customer = new Customer(newCustomer.getName(), newCustomer.getAddress(), newCustomer.getEmail(), newCustomer.getPassword()); // enforce a new ID
+        Customer result = customerService.create(customer);
+        log.info("Created customer {}", result);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
@@ -71,19 +71,19 @@ public class OwnerController {
      * Update existing owner, with a given ID.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> updateOwner(@PathVariable UUID id, @RequestBody OwnerDTO owner) {
-        Owner updateOwner = new Owner(id.toString(), owner.getName(), owner.getAddress(), owner.getEmail()); // enforce the id of the parameter ID
-        ownerService.update(updateOwner);
-        log.info("updated owner {}", updateOwner);
+    public ResponseEntity<HttpStatus> updateCustomer(@PathVariable UUID id, @RequestBody CustomerDTO newCustomer) {
+        Customer updateCustomer = new Customer(id.toString(), newCustomer.getName(), newCustomer.getAddress(), newCustomer.getEmail(), newCustomer.getPassword()); // enforce the id of the parameter ID
+        customerService.update(updateCustomer);
+        log.info("updated owner {}", updateCustomer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOwner(@PathVariable UUID id) {
-        ownerService.delete(id);
+    public void deleteCustomer(@PathVariable UUID id) {
+        customerService.delete(id);
     }
 
-    public static class OwnerDTO {
+    public static class CustomerDTO {
         @Column(nullable = false)
         private String name;
 
@@ -93,13 +93,17 @@ public class OwnerController {
         @Column(nullable = false)
         private String email;
 
-        public OwnerDTO() {
+        @Column(nullable = false)
+        private String password;
+
+        public CustomerDTO() {
         }
 
-        public OwnerDTO(String name, String address, String email) {
+        public CustomerDTO(String name, String address, String email, String password) {
             this.name = name;
             this.address = address;
             this.email = email;
+            this.password = password;
         }
 
         public String getName() {
@@ -114,6 +118,8 @@ public class OwnerController {
             return email;
         }
 
+        public String getPassword() { return password; }
+
         public void setName(String name) {
             this.name = name;
         }
@@ -126,13 +132,18 @@ public class OwnerController {
             this.email = email;
         }
 
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
 
         @Override
         public String toString() {
-            return "Owner{" +
+            return "Customer{" +
                     "name='" + name + '\'' +
                     ", adress='" + address + '\'' +
                     ", email='" + email + '\'' +
+                    ", password=" + password + '\'' +
                     '}';
         }
     }
