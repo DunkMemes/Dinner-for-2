@@ -1,5 +1,4 @@
-package de.dhbw.dinnerfortwo.impl.owner;
-
+package de.dhbw.dinnerfortwo.impl.Owner;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,7 +1,7 @@
 package de.dhbw.dinnerfortwo.api;
 
-import de.dhbw.dinnerfortwo.impl.owner.Owner;
-import de.dhbw.dinnerfortwo.impl.owner.OwnerService;
+import de.dhbw.dinnerfortwo.impl.Owner.Owner;
+import de.dhbw.dinnerfortwo.impl.Owner.OwnerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

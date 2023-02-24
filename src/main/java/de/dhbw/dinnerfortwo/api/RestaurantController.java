@@ -1,7 +1,7 @@
 package de.dhbw.dinnerfortwo.api;
 
-import de.dhbw.dinnerfortwo.impl.restaurant.Restaurant;
-import de.dhbw.dinnerfortwo.impl.restaurant.RestaurantService;
+import de.dhbw.dinnerfortwo.impl.Restaurant.Restaurant;
+import de.dhbw.dinnerfortwo.impl.Restaurant.RestaurantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

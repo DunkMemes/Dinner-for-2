@@ -2,8 +2,8 @@ package de.dhbw.dinnerfortwo
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import de.dhbw.dinnerfortwo.api.OwnerController
-import de.dhbw.dinnerfortwo.impl.owner.Owner
-import de.dhbw.dinnerfortwo.impl.owner.OwnerRepository
+import de.dhbw.dinnerfortwo.impl.Owner.Owner
+import de.dhbw.dinnerfortwo.impl.Owner.OwnerRepository
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

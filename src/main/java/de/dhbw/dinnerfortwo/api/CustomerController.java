@@ -1,7 +1,7 @@
 package de.dhbw.dinnerfortwo.api;
 
-import de.dhbw.dinnerfortwo.impl.customer.Customer;
-import de.dhbw.dinnerfortwo.impl.customer.CustomerService;
+import de.dhbw.dinnerfortwo.impl.Customer.Customer;
+import de.dhbw.dinnerfortwo.impl.Customer.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package de.dhbw.dinnerfortwo
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import de.dhbw.dinnerfortwo.impl.restaurant.RestaurantRepository
+import de.dhbw.dinnerfortwo.impl.Restaurant.RestaurantRepository
 import org.amshove.kluent.`should be equal to`
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import de.dhbw.dinnerfortwo.api.RestaurantController.URI_RESTAURANT_BASE
-import de.dhbw.dinnerfortwo.impl.restaurant.Restaurant
+import de.dhbw.dinnerfortwo.impl.Restaurant.Restaurant
 
 
 @SpringBootTest

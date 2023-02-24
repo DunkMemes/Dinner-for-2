@@ -1,4 +1,4 @@
-package de.dhbw.dinnerfortwo.impl.customer;
+package de.dhbw.dinnerfortwo.impl.Customer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

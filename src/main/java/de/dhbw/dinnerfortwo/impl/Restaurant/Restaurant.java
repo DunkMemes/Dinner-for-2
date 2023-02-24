@@ -1,10 +1,9 @@
-package de.dhbw.dinnerfortwo.impl.restaurant;
+package de.dhbw.dinnerfortwo.impl.Restaurant;
 
-import com.fasterxml.jackson.module.kotlin.ReflectionCache;
+//import com.fasterxml.jackson.module.kotlin.ReflectionCache;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 

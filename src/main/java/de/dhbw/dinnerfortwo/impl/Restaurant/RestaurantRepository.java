@@ -1,4 +1,4 @@
-package de.dhbw.dinnerfortwo.impl.restaurant;
+package de.dhbw.dinnerfortwo.impl.Restaurant;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
