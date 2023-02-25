@@ -31,7 +31,7 @@ public class RestaurantController {
 
     @GetMapping("/{id}")
     public Restaurant getRestaurant(@PathVariable String id) {
-        log.info("Get Method called. Get Restauarant with ID: " + id);
+        log.info("Get Method called. Get restaurant with ID: " + id);
         try {
             return restaurantService.getRestaurantById(id);
         }
@@ -49,7 +49,7 @@ public class RestaurantController {
 
     @PostMapping
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody RestaurantDTO newRestaurant) {
-        Restaurant restaurant = new Restaurant(newRestaurant.getName(), newRestaurant.getCuisine(), newRestaurant.getEmail(), newRestaurant.getRating());
+        Restaurant restaurant = new Restaurant(newRestaurant.getOwnerID(), newRestaurant.getName(),newRestaurant.getCuisine(), newRestaurant.getEmail(), newRestaurant.getRating());
         Restaurant result = restaurantService.createRestaurant(restaurant);
         return new ResponseEntity<>(result,HttpStatus.CREATED);
     }
@@ -87,7 +87,7 @@ public class RestaurantController {
         @Column
         private String ownerID;
 
-        public RestaurantDTO(String name, String ownerID, String cuisine, Double rating, String email) {
+        public RestaurantDTO(String ownerID, String name,  String cuisine, String email, Double rating) {
             this.name = name;
             this.cuisine = cuisine;
             this.rating = rating;

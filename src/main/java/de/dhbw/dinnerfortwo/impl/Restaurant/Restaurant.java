@@ -1,7 +1,5 @@
 package de.dhbw.dinnerfortwo.impl.Restaurant;
 
-//import com.fasterxml.jackson.module.kotlin.ReflectionCache;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,12 +20,12 @@ public class Restaurant {
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private double rating;
+    private Double rating;
 
     public Restaurant() {
     }
 
-    public Restaurant(String restaurantID, String ownerID, String name, String cuisine, String email, double rating) {
+    public Restaurant(String restaurantID, String ownerID, String name, String cuisine, String email, Double rating) {
         this.restaurantID = restaurantID;
         this.ownerID = ownerID;
         this.name = name;
@@ -36,8 +34,9 @@ public class Restaurant {
         this.rating = rating;
     }
 
-    public Restaurant(String name, String cuisine, String email, double rating) {
+    public Restaurant( String ownerID, String name, String cuisine, String email, Double rating) {
         this.restaurantID = UUID.randomUUID().toString();
+        this.ownerID = ownerID;
         this.name = name;
         this.cuisine = cuisine;
         this.email = email;
@@ -88,7 +87,7 @@ public class Restaurant {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
