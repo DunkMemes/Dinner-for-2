@@ -134,6 +134,6 @@ class RestaurantServiceTest(
     }
 
     private fun newRestaurant(): Restaurant {
-        return Restaurant("Bella Italia", "Italy", "info@bella.com", 3.0)
+        return Restaurant("ExampleUUID","Bella Italia", "Italy", "info@bella.com", 3.0)
     }
 }

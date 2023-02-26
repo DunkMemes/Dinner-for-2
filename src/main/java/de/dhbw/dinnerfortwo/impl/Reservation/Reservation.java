@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -24,17 +25,21 @@ public class Reservation {
     private String restaurantID;
 
     @Column(nullable = false)
-    private Date date = new Date();
+    private LocalDateTime date;
 
-    public Reservation(int count_seats, String customerID, String restaurantID, Date date) {
-        this(UUID.randomUUID().toString(), count_seats, customerID, restaurantID, date);
+    public Reservation(int count_seats, String customerID, String restaurantID, LocalDateTime date) {
+        this.reservationID = UUID.randomUUID().toString();
+        this.count_seats = count_seats;
+        this.customerID = customerID;
+        this.restaurantID = restaurantID;
+        this.date = date;
     }
 
 
     public Reservation() {
     }
 
-    public Reservation(String id, int count_seats, String customerID, String restaurantID, Date date) {
+    public Reservation(String id, int count_seats, String customerID, String restaurantID, LocalDateTime date) {
         this.reservationID = id;
         this.count_seats = count_seats;
         this.customerID = customerID;
@@ -63,7 +68,7 @@ public class Reservation {
         return restaurantID;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -79,7 +84,7 @@ public class Reservation {
         this.customerID = customerID;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -111,7 +116,7 @@ public class Reservation {
                 "date=" + date +
                 "customerID=" + customerID +
                 "restaurantID=" + restaurantID +
-                "date=" + date +
+                "Seats=" + count_seats +
                 '}';
     }
 }

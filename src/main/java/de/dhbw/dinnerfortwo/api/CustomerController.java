@@ -52,6 +52,7 @@ public class CustomerController {
     @PutMapping("{id}")
     public ResponseEntity<Customer> updateCustomer(@RequestBody CustomerDTO updateCustomer, @PathVariable String id){
         Customer customer = new Customer(id.toString(),updateCustomer.getName(),updateCustomer.getAddress(), updateCustomer.getEmail(),updateCustomer.getPassword());
+        customerService.updateCustomer(customer);
         log.info("Updated customer{}",customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Column;
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -91,15 +92,16 @@ public class ReservationController {
         private String restaurantID;
 
         @Column(nullable = false)
-        private Date date = new Date();
+        private LocalDateTime date ;
 
         public ReservationDTO() {
         }
 
-        public ReservationDTO( int count_seats, String customerID, String restaurantID) {
+        public ReservationDTO( int count_seats, String customerID, String restaurantID, LocalDateTime date) {
             this.count_seats = count_seats;
             this.customerID = customerID;
             this.restaurantID = restaurantID;
+            this.date = date;
         }
 
         public int getCountSeats() {
@@ -114,7 +116,7 @@ public class ReservationController {
             return restaurantID;
         }
 
-        public Date getDate() { return  date; }
+        public LocalDateTime getDate() { return  date; }
 
 
         public void setCount_seats(int count_seats) { this.count_seats = count_seats; }
@@ -127,7 +129,7 @@ public class ReservationController {
             this.restaurantID = restaurantID;
         }
 
-        public void setDate(Date date) {this.date = date; }
+        public void setDate(LocalDateTime date) {this.date = date; }
         @Override
         public String toString() {
             return "Customer{" +

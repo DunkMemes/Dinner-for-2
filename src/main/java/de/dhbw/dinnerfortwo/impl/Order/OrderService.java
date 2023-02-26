@@ -41,10 +41,10 @@ public class OrderService {
 
     @Transactional
     public void updateOrder(Order order) {
-        var persisted = orderRepository.findById(order.getId()).orElseThrow(() -> new EntityNotFoundException("Could not find Order with Id " + order.getId()));
-        persisted.setCustomerID(order.getCustomerId());
-        persisted.setDate(order.getDate());
-        persisted.setRestaurantID(order.getRestaurantId());
+        var persisted = orderRepository.findById(order.getOrderID()).orElseThrow(() -> new EntityNotFoundException("Could not find Order with Id " + order.getOrderID()));
+        persisted.setCustomerID(order.getCustomerID());
+        persisted.setOrderDate(order.getOrderDate());
+        persisted.setRestaurantID(order.getRestaurantID());
         persisted.setTotalPrice(order.getTotalPrice());
         orderRepository.save(order);
     }

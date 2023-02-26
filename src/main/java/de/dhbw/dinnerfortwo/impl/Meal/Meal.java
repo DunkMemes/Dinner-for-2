@@ -44,7 +44,7 @@ public class Meal extends Object {
     }
 
     public double getPrice() {
-        return getPrice();
+        return this.price;
     }
 
     public String getCategory() {

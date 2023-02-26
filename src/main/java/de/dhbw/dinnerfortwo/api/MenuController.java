@@ -84,7 +84,7 @@ public class MenuController {
         public MenuDTO() {
         }
 
-        public MenuDTO(String name, double price, String category) {
+        public MenuDTO( String category) {
             this.category = category;
         }
         public String getCategory() {

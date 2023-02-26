@@ -1,8 +1,5 @@
 package de.dhbw.dinnerfortwo.impl.Rating;
 
-import de.dhbw.dinnerfortwo.impl.Restaurant.Restaurant;
-import org.hibernate.annotations.ManyToAny;
-
 import javax.persistence.*;
 import java.util.UUID;
 

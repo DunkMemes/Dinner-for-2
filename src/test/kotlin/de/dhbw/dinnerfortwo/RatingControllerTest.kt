@@ -84,8 +84,8 @@ class RatingControllerTest(@Autowired val repository: RatingRepository) {
                 .andReturn()
 
             // validate result
-            val updatedOwner = repository.findById(entity.id).get()
-            updatedOwner.ratingText `should be equal to` "Updated rating Text"
+            val updatedRating = repository.findById(entity.id).get()
+            updatedRating.ratingText `should be equal to` "Updated rating Text"
         }
 
 

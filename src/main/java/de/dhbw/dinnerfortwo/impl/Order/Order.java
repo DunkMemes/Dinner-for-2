@@ -5,78 +5,79 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Order")
-public class Order extends Object {
+@Table(name = "OrderTable")
+public class Order{
     @Id
     private String orderID;
 
-    @Column(nullable = false)
-    private Date date = new Date();
+    @Column(nullable = false, name = "orderDate" )
+    private Date orderDate;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "restaurantID")
     private String  restaurantID;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "customerID" )
     private String customerID;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "totalPrice")
     private double totalPrice;
 
-    public Order() {
-    }
-
-    public Order(String id, Date date, String restaurantID, String customerID, double totalPrice) {
-        this.orderID = id;
-        this.date = date;
-        this.restaurantID = restaurantID;
-        this.customerID = customerID;
-        this.totalPrice = totalPrice;
-    }
-
-    public Order(Date date, String restaurantID, String customerID, double totalPrice) {
-        this.orderID = UUID.randomUUID().toString();
-        this.date = date;
-        this.restaurantID = restaurantID;
-        this.customerID = customerID;
-        this.totalPrice = totalPrice;
-    }
-
-    public String getId() {
+    public String getOrderID() {
         return orderID;
     }
 
-    public Date getDate() {
-        return date;
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
-    public String getRestaurantId() {
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getRestaurantID() {
         return restaurantID;
-    }
-
-    public String getCustomerId() {
-        return customerID;
-    }
-
-    public double getTotalPrice() { return totalPrice; }
-
-    public void setId(String id) {
-        this.orderID = id;
-    }
-
-    public void setDate(Date date) {
-            this.date = date;
     }
 
     public void setRestaurantID(String restaurantID) {
         this.restaurantID = restaurantID;
     }
 
+    public String getCustomerID() {
+        return customerID;
+    }
+
     public void setCustomerID(String customerID) {
         this.customerID = customerID;
     }
 
-    public void setTotalPrice(double totalPrice) { this.totalPrice = totalPrice; }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+    public Order() {
+    }
+    public Order(String orderID, Date orderDate, String restaurantID, String customerID, double totalPrice) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.restaurantID = restaurantID;
+        this.customerID = customerID;
+        this.totalPrice = totalPrice;
+    }
 
+    public Order(Date orderDate, String restaurantID, String customerID, double totalPrice) {
+        this.orderID = UUID.randomUUID().toString();
+        this.orderDate = orderDate;
+        this.restaurantID = restaurantID;
+        this.customerID = customerID;
+        this.totalPrice = totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     // equals and hash code must be based on the ID for JPA to work well.
     @Override
@@ -99,7 +100,7 @@ public class Order extends Object {
     public String toString() {
         return "Order{" +
                 "orderID='" + orderID + '\'' +
-                ", date=" + date +
+                ", orderDate=" + orderDate +
                 ", restarauntID='" + restaurantID + '\'' +
                 ", customerID='" + customerID + '\'' +
                 ", totalPrice=" + totalPrice +

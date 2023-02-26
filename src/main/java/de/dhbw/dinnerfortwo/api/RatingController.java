@@ -35,7 +35,7 @@ public class RatingController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/{id}")
-    public ResponseEntity<de.dhbw.dinnerfortwo.impl.Rating.Rating> getRating(@PathVariable UUID id) {
+    public ResponseEntity<Rating> getRating(@PathVariable UUID id) {
         log.info("Get rating with id {}", id);
         try {
             var rating = ratingService.getRatingById(id);

@@ -17,27 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.Column;
 import javax.persistence.EntityNotFoundException;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import static de.dhbw.dinnerfortwo.api.MetaInfo.URI_BASE;
-import static de.dhbw.dinnerfortwo.api.MealController.URI_OWNER_BASE;
+import static de.dhbw.dinnerfortwo.api.MealController.URI_MEAL_BASE;
 
 /**
  * REST (HTTP) API of the Dinner app to interact with the UI or external applications.
  * The REST API provides the CRUD operations to create, read, update or delete a meal.
  */
 @RestController
-@RequestMapping(value = URI_OWNER_BASE, produces = "application/json;charset=UTF-8")
+@RequestMapping(value = URI_MEAL_BASE, produces = "application/json;charset=UTF-8")
 public class MealController {
 
-    public static final String URI_OWNER_BASE = URI_BASE + "/meals";
+    public static final String URI_MEAL_BASE = URI_BASE + "/meals";
 
     private final MealService mealService;
 
-    public MealController(MealService mealService) {
-        this.mealService = mealService;
+    public MealController(MealService menuService) {
+        this.mealService = menuService;
     }
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -108,7 +107,7 @@ public class MealController {
         }
 
         public double getPrice() {
-            return getPrice();
+            return this.price;
         }
 
         public String getCategory() {
