@@ -25,7 +25,7 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(String restaurantID, String ownerID, String name, String cuisine, String email, Double rating) {
+    public Restaurant(String restaurantID, String name, String ownerID, String cuisine, String email, Double rating) {
         this.restaurantID = restaurantID;
         this.ownerID = ownerID;
         this.name = name;

@@ -28,7 +28,7 @@ public class RestaurantController {
     public RestaurantController(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
     }
-
+    @CrossOrigin
     @GetMapping("/{id}")
     public Restaurant getRestaurant(@PathVariable String id) {
         log.info("Get Method called. Get restaurant with ID: " + id);
@@ -39,14 +39,14 @@ public class RestaurantController {
             return null;
         }
     }
-
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<List<Restaurant>> getAllRestaurants() {
         log.info("Get all restaurants");
         var result = restaurantService.getAllRestuaurants();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody RestaurantDTO newRestaurant) {
         Restaurant restaurant = new Restaurant(newRestaurant.getOwnerID(), newRestaurant.getName(),newRestaurant.getCuisine(), newRestaurant.getEmail(), newRestaurant.getRating());
