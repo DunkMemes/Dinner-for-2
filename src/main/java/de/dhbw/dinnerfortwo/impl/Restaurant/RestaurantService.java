@@ -10,6 +10,12 @@ import java.util.List;
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private void initDB(){
+        restaurantRepository.save(new Restaurant("bfe1168c-9284-4e7c-8827-03f59805d724","Bella Italia","Italian","BellaItalia@Italy.com",4.6));
+        restaurantRepository.save(new Restaurant("20c2b59d-ab7c-4268-9b61-ddab7f4ee352","Shanghai","Asian","Shanghai@China.com",4.3));
+        count_init++;
+    }
+    private int count_init = 0;
 
     public RestaurantService(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
@@ -21,6 +27,9 @@ public class RestaurantService {
     }
 
     public List<Restaurant> getAllRestuaurants() {
+        if(count_init<1){
+            initDB();
+        }
         log.info("Fetch all Restaurants");
         return restaurantRepository.findAll().stream().toList();
     }
