@@ -99,7 +99,7 @@ public class Customer extends Object {
         return "Customer{" +
                 "id=" + customerID +
                 ", name='" + name + '\'' +
-                ", adress='" + address + '\'' +
+                ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
